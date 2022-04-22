@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace RentACar.Controllers
 {
-    public class HomeController : Controller
+    public class PageController : Controller
     {
         public IActionResult Index()
         {
             return View();
-        }   
+        }
     }
 }

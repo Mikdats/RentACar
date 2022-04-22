@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@model RentACar.ViewModel.UserViewModel
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -32,7 +34,11 @@
                         <div class="wrapper-page">
 
                             <div class="m-t-40 card-box">
-                                <div class="text-center">
+                                @using (Html.BeginForm("Index","Home"))
+                            {
+                                <button class="btn btn-dark"> Geri</button>
+                            }
+                            <div class="text-center">
                                     <h2 class="text-uppercase m-t-0 m-b-30">
                                         <a href="index.html" class="text-success">
                                             <span><img src="~/adminn/assets/images/logo.png" alt="" ></span>
@@ -41,20 +47,26 @@
                                     <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
                                 </div>
                                 <div class="account-content">
-                                    <form class="form-horizontal" action="#">
+                                    <form class="form-horizontal" asp-controller="Hesap" asp-action="Giris" method="post">
+                                        <span class=" alert-danger">
+                                        @Html.ValidationMessage("Hata1")
+                                    </span>
 
                                         <div class="form-group m-b-20">
                                             <div class="col-12">
-                                                <label for="emailaddress">Mail Adresi</label>
-                                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="Mailinizi giriniz">
+                                                <label for="Email">E-Posta Adresi</label>
+                                                <input class="form-control" type="email" id="Email" name="Email" required="" placeholder="E-Postanızı giriniz" value=@Model.Email>
+                                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
                                             </div>
                                         </div>
 
                                         <div class="form-group m-b-20">
                                             <div class="col-12">
                                                 <a asp-controller="Hesap" asp-action="SifreSifirla" class="text-muted pull-right font-14">Şifrenizi mi unuttunuz?</a>
-                                                <label for="password">Şifre</label>
-                                                <input class="form-control" type="password" required="" id="password" placeholder="Şifrenizi giriniz">
+                                                <label for="Password">Şifre</label>
+                                                <input class="form-control" type="password" required="" id="Password" name="Password" placeholder="Şifrenizi giriniz">
+                                                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                                
                                             </div>
                                         </div>
 

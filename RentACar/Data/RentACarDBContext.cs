@@ -11,12 +11,29 @@ namespace RentACar.Data
         public DbSet<FuelType> FuelTypes { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<CarColor> CarColors { get; set; }
-        public DbSet<BodyType> BodyTypes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+       
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Role>().HasData(
 
+               new Role { RoleID=1,RoleName="PasifKullanıcı"},
+               new Role { RoleID=2,RoleName="AktifKullanıcı"},
+               new Role { RoleID=3,RoleName="Admin"},
+               new Role { RoleID=4,RoleName="SuperVisor"}
+               
+               );
+            modelBuilder.Entity<User>().HasData(
+
+              new User {UserID=1,Email="admin@test.com",FullName="Administrator",Surname= "Administrator",MobileNO="5554443322",Password="Test123!",PasswordRepeat="Test123!",RoleID=3},
+              new User {UserID=2,Email="aktif@test.com",FullName="aktif",Surname= "aktif",MobileNO="5554443322",Password="Test123!",PasswordRepeat="Test123!",RoleID=2},
+              new User {UserID=3,Email="pasif@test.com",FullName="pasif",Surname= "pasif",MobileNO="5554443322",Password="Test123!",PasswordRepeat="Test123!",RoleID=1}
+             
+
+              );
             modelBuilder.Entity<GearType>().HasData(
 
                 new GearType { GearTypeID = 1, GearTypeName = "Otomatik" },
